@@ -47,8 +47,8 @@ def build_model():
 	model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
 	model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
 	model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
-	model.add(Convolution2D(64, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
-	model.add(Convolution2D(64, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
+	model.add(Convolution2D(64, 3, 3, subsample=(1, 1), activation=ACTIVATION_FUNC))
+	model.add(Convolution2D(64, 3, 3, subsample=(1, 1), activation=ACTIVATION_FUNC))
 	# Fully-connected layers
 	model.add(Flatten())
 	model.add(Dense(100))
