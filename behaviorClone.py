@@ -16,6 +16,8 @@ LEARNING_RATE   = 1e-4
 BATCH_SIZE      = 128
 NUM_EPOCH       = 3
 
+# Resolve plt backend issues in VM
+plt.switch_backend('agg')
 
 samples = dp.read_data_csv(DATA_PATH, CSV_FILENAME)
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
