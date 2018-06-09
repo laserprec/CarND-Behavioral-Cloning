@@ -2,10 +2,10 @@ import cv2
 import random
 import numpy as np
 
-GAMMA_COR_CHANCE = 0.6
+GAMMA_COR_CHANCE = 0.4
 FLIP_CHANCE      = 0.5
-SHEAR_CHANCE     = 0.6
-SHEAR_RANGE      = 45
+SHEAR_CHANCE     = 0.3
+SHEAR_RANGE      = 35
 
 def happens(prob):
     """ Trigger a random event to happen

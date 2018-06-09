@@ -30,13 +30,13 @@ def select_image(sample, data_path):
         return img, angle
     # Left Camera Image: adjust with a small right turn
     elif choice_index == 1:
-        return img, angle - 0.24
+        return img, angle - 0.4
     # Right Camera Imageadjust with a small left turn
     else:
         return img, angle + 0.24
 
 # From Udacity course notes
-def sample_generator(samples, data_path, batch_size=32):
+def sample_generator(samples, data_path, batch_size=32, augment_enable=True):
     num_samples = len(samples)
     while 1: # Loop forever so the generator never terminates
         shuffle(samples)
@@ -47,7 +47,8 @@ def sample_generator(samples, data_path, batch_size=32):
             for batch_sample in batch_samples:
                 img, angle = select_image(batch_sample, data_path)
                 # augment the image
-                img, angle = da.augment_image(img, angle)
+                if augment_enable
+                    img, angle = da.augment_image(img, angle)
                 images.append(img)
                 angles.append(angle)
 

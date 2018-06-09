@@ -24,7 +24,7 @@ SAMPLE_PER_EPOCH = len(train_samples)
 
 # compile and train the model using the generator function
 train_gen = dp.sample_generator(train_samples, DATA_PATH, batch_size=BATCH_SIZE)
-validation_gen = dp.sample_generator(validation_samples, DATA_PATH, batch_size=BATCH_SIZE)
+validation_gen = dp.sample_generator(validation_samples, DATA_PATH, batch_size=BATCH_SIZE, augment_enable=false)
 
 def build_model():
 	""" 
