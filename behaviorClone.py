@@ -1,36 +1,30 @@
-import csv
-import cv2
 import numpy as np
-
-ACTIVATION_FUNC = 'tanh'
-LOSS_FUNC       = 'mse'
-LEARNING_RATE   = 1e-4
-
-lines = []
-with open('./data/driving_log.csv') as f:
-	reader = csv.reader(f)
-	for line in reader:
-		lines.append(line)
-
-images = []
-measurements = []
-
-for line in lines:
-	source_path = line[0]
-	filename = source_path.split('/')[-1]
-	curr_path = './data/IMG/' + filename
-	image = cv2.imread(curr_path)
-	images.append(image)
-	measurement = float(line[3])
-	measurements.append(measurement)
-
-X_train = np.array(images)
-y_train = np.array(measurements)
-
+import matplotlib.pyplot as plt
+import datapipe as dp
+from sklearn.model_selection import train_test_split
 from keras.optimizers import Adam
 from keras.models import Sequential
 from keras.layers import Activation, Convolution2D, Cropping2D, Dense, Dropout
 from keras.layers import Flatten, Lambda, MaxPooling2D
+
+DATA_PATH       = './data'
+CSV_FILENAME    = '/driving_log.csv'
+
+ACTIVATION_FUNC = 'tanh'
+LOSS_FUNC       = 'mse'
+LEARNING_RATE   = 1e-4
+BATCH_SIZE      = 128
+NUM_EPOCH       = 3
+
+
+samples = dp.read_data_csv(DATA_PATH, CSV_FILENAME)
+train_samples, validation_samples = train_test_split(samples, test_size=0.2)
+
+SAMPLE_PER_EPOCH = len(train_samples)
+
+# compile and train the model using the generator function
+train_gen = dp.sample_generator(train_samples, DATA_PATH, batch_size=BATCH_SIZE)
+validation_gen = dp.sample_generator(validation_samples, DATA_PATH, batch_size=BATCH_SIZE)
 
 def build_model():
 	""" 
@@ -60,6 +54,8 @@ def build_model():
 	return model
 
 model = build_model()
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=6)
+model.fit_generator(train_gen, samples_per_epoch= \
+            SAMPLE_PER_EPOCH, validation_data=validation_gen, \
+            nb_val_samples=len(validation_samples), nb_epoch=NUM_EPOCH)
 
 model.save('model.h5')
