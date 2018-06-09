@@ -12,9 +12,9 @@ CSV_FILENAME    = '/driving_log.csv'
 
 ACTIVATION_FUNC = 'tanh'
 LOSS_FUNC       = 'mse'
-LEARNING_RATE   = 1e-3
+LEARNING_RATE   = 1e-4
 BATCH_SIZE      = 512
-NUM_EPOCH       = 6
+NUM_EPOCH       = 12
 
 # Resolve plt backend issues in VM
 plt.switch_backend('agg')

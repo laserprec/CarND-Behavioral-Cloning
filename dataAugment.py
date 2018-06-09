@@ -2,10 +2,10 @@ import cv2
 import random
 import numpy as np
 
-GAMMA_COR_CHANCE = 0.4
+GAMMA_COR_CHANCE = 0.3
 FLIP_CHANCE      = 0.5
-SHEAR_CHANCE     = 0.3
-SHEAR_RANGE      = 35
+SHEAR_CHANCE     = 0.4
+SHEAR_RANGE      = 90
 
 def happens(prob):
     """ Trigger a random event to happen
@@ -19,7 +19,7 @@ def happens(prob):
     chance = random.uniform(0,1)
     return chance <= prob
 
-def rand_gamma(image, steering, max=2.5, min=0.3, prob=GAMMA_COR_CHANCE):
+def rand_gamma(image, steering, max=2.5, min=0.5, prob=GAMMA_COR_CHANCE):
     """Apply a gamma correction to the image
     
     Keyword Arguments:
