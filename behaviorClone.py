@@ -20,7 +20,7 @@ NUM_EPOCH       = 3
 samples = dp.read_data_csv(DATA_PATH, CSV_FILENAME)
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
-SAMPLE_PER_EPOCH = len(train_samples) * 3
+SAMPLE_PER_EPOCH = len(train_samples)
 
 # compile and train the model using the generator function
 train_gen = dp.sample_generator(train_samples, DATA_PATH, batch_size=BATCH_SIZE)
