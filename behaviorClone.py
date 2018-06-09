@@ -21,10 +21,11 @@ samples = dp.read_data_csv(DATA_PATH, CSV_FILENAME)
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
 SAMPLE_PER_EPOCH = len(train_samples)
+g = dp.DataGenerator()
 
 # compile and train the model using the generator function
-train_gen = dp.sample_generator(train_samples, DATA_PATH, batch_size=BATCH_SIZE)
-validation_gen = dp.sample_generator(validation_samples, DATA_PATH, batch_size=BATCH_SIZE, augment_enable=false)
+train_gen = g.sample_generator(train_samples, DATA_PATH, batch_size=BATCH_SIZE)
+validation_gen = g.sample_generator(validation_samples, DATA_PATH, batch_size=BATCH_SIZE, augment_enable=False)
 
 def build_model():
 	""" 
@@ -59,3 +60,11 @@ model.fit_generator(train_gen, samples_per_epoch= \
             nb_val_samples=len(validation_samples), nb_epoch=NUM_EPOCH)
 
 model.save('model.h5')
+
+# Report the statistics on steering angle frequency
+n, bins, patches = plt.hist(g.steering, 50, alpha=1)
+plt.title('Steering Angle Frequency After Data Augmentation')
+plt.ylabel('Frequency')
+plt.xlabel('Steering Angle')
+plt.savefig('./img/cur_data_freq.jpg')
+# plt.show()

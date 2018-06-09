@@ -35,23 +35,29 @@ def select_image(sample, data_path):
     else:
         return img, angle - 0.1
 
-# From Udacity course notes
-def sample_generator(samples, data_path, batch_size=32, augment_enable=True):
-    num_samples = len(samples)
-    while 1: # Loop forever so the generator never terminates
-        shuffle(samples)
-        for offset in range(0, num_samples, batch_size):
-            batch_samples = samples[offset:offset+batch_size]
-            images = []
-            angles = []
-            for batch_sample in batch_samples:
-                img, angle = select_image(batch_sample, data_path)
-                # augment the image
-                if augment_enable:
-                    img, angle = da.augment_image(img, angle)
-                images.append(img)
-                angles.append(angle)
+class DataGenerator(object):
+    def __init__(self):
+        self.steering = []
 
-            X_train = np.array(images)
-            y_train = np.array(angles)
-            yield shuffle(X_train, y_train)
+    # From Udacity course notes
+    def sample_generator(self, samples, data_path, batch_size=32, augment_enable=True):
+        num_samples = len(samples)
+        while 1: # Loop forever so the generator never terminates
+            shuffle(samples)
+            for offset in range(0, num_samples, batch_size):
+                batch_samples = samples[offset:offset+batch_size]
+                images = []
+                angles = []
+                for batch_sample in batch_samples:
+                    img, angle = select_image(batch_sample, data_path)
+                    # augment the image
+                    if augment_enable:
+                        img, angle = da.augment_image(img, angle)
+                    # Keep tract of the steering angles for reporting
+                    self.steering.append(angle)
+                    images.append(img)
+                    angles.append(angle)
+
+                X_train = np.array(images)
+                y_train = np.array(angles)
+                yield shuffle(X_train, y_train)
