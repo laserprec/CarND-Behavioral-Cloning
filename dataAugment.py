@@ -77,8 +77,8 @@ def augment_image(image, steering):
     image, steering = flip(image, steering)
     return image, steering
 
-def crop(image, steering, top_rows, bottom_rows):
+def crop_n_resize(image, top_rows, bottom_rows, new_size):
     top  = top_rows
     bot  = image.shape[0] - bottom_rows
-    return image[top:bot:], steering
-
+    image = image[top:bot:]
+    return cv2.resize(image, new_size)

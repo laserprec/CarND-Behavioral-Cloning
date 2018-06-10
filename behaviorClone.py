@@ -39,7 +39,7 @@ def build_model():
 	# Normalize the data
 	model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(160, 320, 3)))
 	# Crop the data 
-	model.add(Cropping2D(cropping=((70, 25), (0,0))))
+	model.add(Cropping2D(cropping=((80, 25), (10,10))))
 	# Convolution layers
 	model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
 	model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
