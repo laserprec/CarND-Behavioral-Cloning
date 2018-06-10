@@ -187,16 +187,12 @@ This finally resolves the issue.
 
 Speed is also an important factor in evaluating how the model performs. The dataset has very few instances of large turn angles and is not likely to make wide angle turns, so it is not advantageous for the model to go fast when test it on the track. 
 
-The training speed is around 30MPH, so tune down the speed for autonomous driving for Track1 to 20MPH, and the model is doing great. 
+The training speed is around 30MPH, so I tune down the speed for autonomous driving for Track1 to 20MPH, and the model is doing great. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SJyCEcUxbe0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+- [Track1](https://youtu.be/Utz5BzwYJ1Y): https://youtu.be/Utz5BzwYJ1Y
 
 For Track2, which the model has been never exposed to during training is doing exceptional at 10MPH.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Utz5BzwYJ1Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-If links above do not work here are the URLs to the videos
-
-- [Track1](https://youtu.be/Utz5BzwYJ1Y): https://youtu.be/Utz5BzwYJ1Y
 - [Track2](https://youtu.be/SJyCEcUxbe0): https://youtu.be/Utz5BzwYJ1Y
+
 
