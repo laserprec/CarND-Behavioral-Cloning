@@ -37,7 +37,7 @@ def build_model():
 	"""
 	model = Sequential()
 	# Normalize the data
-	model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(200, 64, 3)))
+	model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(64, 200, 3)))
 	# Convolution layers
 	model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
 	model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation=ACTIVATION_FUNC))
