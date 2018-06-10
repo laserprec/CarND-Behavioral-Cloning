@@ -30,10 +30,10 @@ def select_image(sample, data_path):
         return img, angle
     # Left Camera Image: adjust with a small right turn
     elif choice_index == 1:
-        return img, angle + 0.1
+        return img, angle + 0.25
     # Right Camera Imageadjust with a small left turn
     else:
-        return img, angle - 0.1
+        return img, angle - 0.25
 
 class DataGenerator(object):
     def __init__(self):
