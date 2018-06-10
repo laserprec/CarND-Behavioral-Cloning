@@ -63,8 +63,8 @@ model.save('model.h5')
 
 # Report the statistics on steering angle frequency
 n, bins, patches = plt.hist(g.steering, 50, alpha=1)
-plt.title('Steering Angle Frequency After Data Augmentation')
+plt.title('Steering Angle Frequency In the Current Training Session')
 plt.ylabel('Frequency')
 plt.xlabel('Steering Angle')
-plt.savefig('./img/cur_data_freq.jpg')
+# plt.savefig('./img/cur_data_freq.jpg')
 # plt.show()
