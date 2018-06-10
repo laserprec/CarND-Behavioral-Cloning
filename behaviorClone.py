@@ -12,7 +12,7 @@ CSV_FILENAME    = '/driving_log.csv'
 
 ACTIVATION_FUNC = 'tanh'
 LOSS_FUNC       = 'mse'
-LEARNING_RATE   = 1e-4
+LEARNING_RATE   = 1e-3
 BATCH_SIZE      = 512
 NUM_EPOCH       = 12
 
