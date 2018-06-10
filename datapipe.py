@@ -50,7 +50,7 @@ class DataGenerator(object):
                 angles = []
                 for batch_sample in batch_samples:
                     img, angle = select_image(batch_sample, data_path)
-                    img = da.crop_n_resize(img, 80, 25, (64,64))
+                    img = da.crop_n_resize(img, 80, 25, (200, 64))
                     # augment the image
                     if augment_enable:
                         img, angle = da.augment_image(img, angle)

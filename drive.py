@@ -1,6 +1,7 @@
 import argparse
 import base64
 from datetime import datetime
+from dataAugment import crop_n_resize
 import os
 import shutil
 
@@ -61,6 +62,8 @@ def telemetry(sid, data):
         imgString = data["image"]
         image = Image.open(BytesIO(base64.b64decode(imgString)))
         image_array = np.asarray(image)
+        # Preprocess the image in the same way as in training
+        image_array = crop_n_resize(image_array, 80, 25, (200,64))
         steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
 
         throttle = controller.update(float(speed))
